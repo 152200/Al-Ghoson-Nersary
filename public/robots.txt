@@ -12,7 +12,7 @@ Disallow: /temp/
 Disallow: /*?*
 
 # Sitemaps
-Sitemap: https://al-ghoson-nersary.vercel.app/.xml
+Sitemap: https://al-ghoson-nersary.vercel.app/sitemap.xml
 Sitemap: https://www.deiralghosonnursery.ps/news-sitemap.xml
 
 # Optimize crawling
