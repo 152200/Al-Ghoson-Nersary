@@ -72,7 +72,7 @@ function Footer() {
               </motion.div>
             </div>
           </motion.div>
-          
+           {/* comment to test vercel */}
           <motion.div variants={fadeInUp}>
             <h3 className="text-lg font-semibold mb-4">ساعات العمل</h3>
             <ul className="space-y-2 opacity-90">
