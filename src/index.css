@@ -28,4 +28,8 @@ body {
   .btn-secondary {
     @apply bg-[#ECE852] text-gray-800 px-6 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-300;
   }
+
+  .test-tailwind {
+    @apply text-blue-500 font-bold p-4;
+  }
 }

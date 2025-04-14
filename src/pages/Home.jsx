@@ -226,6 +226,7 @@ function Home() {
                     src={program.image} 
                     alt={program.title}
                     className="w-full h-48 object-cover"
+                    loading="lazy"
                   />
                   <div className="p-6">
                     <h3 className="text-xl font-semibold mb-2">{program.title}</h3>
@@ -281,6 +282,7 @@ function Home() {
                       src={event.image} 
                       alt={event.title}
                       className="h-full w-full object-cover"
+                      loading="lazy"
                     />
                     <div className="p-6">
                       <h3 className="text-2xl font-bold mb-4">{event.title}</h3>

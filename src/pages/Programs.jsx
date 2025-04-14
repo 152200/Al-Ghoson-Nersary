@@ -87,6 +87,7 @@ const Programs = () => {
                     initial={{ scale: 1.2 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.6 }}
+                    loading="lazy"
                   />
                   <div className="p-8">
                     <motion.div
@@ -172,6 +173,7 @@ const Programs = () => {
                     initial={{ scale: 1.2 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.6 }}
+                    loading="lazy"
                   />
                 </div>
               </motion.div>
@@ -191,6 +193,7 @@ const Programs = () => {
                     initial={{ scale: 1.2 }}
                     animate={{ scale: 1 }}
                     transition={{ duration: 0.6 }}
+                    loading="lazy"
                   />
                   <div className="p-8">
                     <motion.div

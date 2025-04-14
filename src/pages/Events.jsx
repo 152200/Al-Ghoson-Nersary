@@ -113,6 +113,7 @@ const Events = () => {
                       className="h-full w-full object-cover"
                       whileHover={{ scale: 1.05 }}
                       transition={{ duration: 0.6 }}
+                      loading="lazy"
                     />
                     <div className="p-8">
                       <motion.div
