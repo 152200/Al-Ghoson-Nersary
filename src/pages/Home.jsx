@@ -1,9 +1,72 @@
 import React from 'react'
 import { Heart, Star, Users, Calendar, Clock, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { motion, AnimatePresence } from 'framer-motion'
 import SEO from '../components/SEO';
 
 function Home() {
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const fadeInLeft = {
+    initial: { opacity: 0, x: -100 },
+    animate: { 
+      opacity: 1, 
+      x: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.15
+      }
+    }
+  }
+
+  const scaleIn = {
+    initial: { scale: 0.8, opacity: 0 },
+    animate: { 
+      scale: 1, 
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  }
+
+  const pageTransition = {
+    initial: { opacity: 0 },
+    animate: { 
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        when: "beforeChildren",
+        staggerChildren: 0.2
+      }
+    },
+    exit: { 
+      opacity: 0,
+      transition: {
+        duration: 0.3
+      }
+    }
+  }
+
   const upcomingEvents = [
     {
       id: 1,
@@ -24,116 +87,195 @@ function Home() {
   ]
 
   return (
-    <>
-      <SEO 
-        title="الرئيسية"
-        description="حضانة جمعية دير الغصون في طولكرم - بيئة تعليمية آمنة ومحفزة لنمو طفلك. نقدم برامج تعليمية متميزة للأطفال."
-        keywords="حضانة طولكرم, حضانة أطفال, تعليم مبكر, حضانة دير الغصون, روضة أطفال"
-        url="/"
-      />
-      <div>
+    <AnimatePresence mode="wait">
+      <motion.div
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={pageTransition}
+      >
+        <SEO 
+          title="الرئيسية"
+          description="حضانة جمعية دير الغصون في طولكرم - بيئة تعليمية آمنة ومحفزة لنمو طفلك. نقدم برامج تعليمية متميزة للأطفال."
+          keywords="حضانة طولكرم, حضانة أطفال, تعليم مبكر, حضانة دير الغصون, روضة أطفال"
+          url="/"
+        />
+        
         {/* Hero Section */}
-        <div 
+        <motion.div 
           className="h-[600px] bg-cover bg-center relative"
           style={{
             backgroundImage: "url('https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&q=80')"
           }}
+          initial={{ opacity: 0, scale: 1.1 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2 }}
         >
           <div className="absolute inset-0 bg-black bg-opacity-50">
             <div className="container mx-auto px-4 h-full flex items-center">
-              <div className="text-white max-w-2xl">
+              <motion.div 
+                className="text-white max-w-2xl"
+                initial={{ x: -100, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.5, duration: 0.8 }}
+              >
                 <h1 className="text-5xl font-bold mb-4">أهلاً بكم في حضانة جمعية دير الغصون</h1>
                 <p className="text-xl mb-8">نوفر بيئة تعليمية آمنة ومحفزة لنمو طفلك</p>
-                <Link to="/programs" className="btn-primary text-lg inline-block">اكتشف برامجنا</Link>
-              </div>
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link to="/programs" className="btn-primary text-lg inline-block">اكتشف برامجنا</Link>
+                </motion.div>
+              </motion.div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Features */}
-        <div className="py-16 bg-white">
+        <motion.div 
+          className="py-16 bg-white"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <Heart className="w-12 h-12 text-primary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">رعاية محبة</h3>
-                <p className="text-gray-600">نقدم رعاية شخصية لكل طفل</p>
-              </div>
-              <div className="text-center">
-                <Star className="w-12 h-12 text-accent mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">تعليم متميز</h3>
-                <p className="text-gray-600">مناهج تعليمية متطورة</p>
-              </div>
-              <div className="text-center">
-                <Users className="w-12 h-12 text-secondary mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">معلمون مؤهلون</h3>
-                <p className="text-gray-600">فريق تعليمي ذو خبرة</p>
-              </div>
-              <div className="text-center">
-                <Calendar className="w-12 h-12 text-danger mx-auto mb-4" />
-                <h3 className="text-xl font-semibold mb-2">أنشطة متنوعة</h3>
-                <p className="text-gray-600">برامج ترفيهية وتعليمية</p>
-              </div>
-            </div>
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-4 gap-8"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, margin: "-100px" }}
+            >
+              {[
+                { Icon: Heart, title: 'رعاية محبة', desc: 'نقدم رعاية شخصية لكل طفل', color: 'primary' },
+                { Icon: Star, title: 'تعليم متميز', desc: 'مناهج تعليمية متطورة', color: 'accent' },
+                { Icon: Users, title: 'معلمون مؤهلون', desc: 'فريق تعليمي ذو خبرة', color: 'secondary' },
+                { Icon: Calendar, title: 'أنشطة متنوعة', desc: 'برامج ترفيهية وتعليمية', color: 'danger' }
+              ].map((feature, index) => (
+                <motion.div 
+                  key={index}
+                  className="text-center"
+                  variants={fadeInUp}
+                >
+                  <motion.div
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <feature.Icon className={`w-12 h-12 text-${feature.color} mx-auto mb-4`} />
+                  </motion.div>
+                  <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                  <p className="text-gray-600">{feature.desc}</p>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Programs Preview */}
-        <div className="py-16 bg-gray-50">
+        <motion.div 
+          className="py-16 bg-gray-50"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-center mb-12">برامجنا التعليمية</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80" 
-                  alt="برنامج الحضانة"
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">برنامج الحضانة</h3>
-                  <p className="text-gray-600 mb-4">للأطفال من عمر 2-3 سنوات</p>
-                  <Link to="/programs" className="btn-secondary w-full block text-center">المزيد من التفاصيل</Link>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&q=80" 
-                  alt="برنامج الروضة"
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">برنامج الروضة</h3>
-                  <p className="text-gray-600 mb-4">للأطفال من عمر 3-4 سنوات</p>
-                  <Link to="/programs" className="btn-secondary w-full block text-center">المزيد من التفاصيل</Link>
-                </div>
-              </div>
-              <div className="bg-white rounded-lg shadow-md overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&q=80" 
-                  alt="برنامج التمهيدي"
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold mb-2">برنامج التمهيدي</h3>
-                  <p className="text-gray-600 mb-4">للأطفال من عمر 4-5 سنوات</p>
-                  <Link to="/programs" className="btn-secondary w-full block text-center">المزيد من التفاصيل</Link>
-                </div>
-              </div>
-            </div>
+            <motion.h2 
+              className="text-3xl font-bold text-center mb-12"
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, margin: "-50px" }}
+            >
+              برامجنا التعليمية
+            </motion.h2>
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-3 gap-8"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, margin: "-50px" }}
+            >
+              {[
+                {
+                  title: 'برنامج الحضانة',
+                  age: 'للأطفال من عمر 2-3 سنوات',
+                  image: 'https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&q=80'
+                },
+                {
+                  title: 'برنامج الروضة',
+                  age: 'للأطفال من عمر 3-4 سنوات',
+                  image: 'https://images.unsplash.com/photo-1560969184-10fe8719e047?auto=format&fit=crop&q=80'
+                },
+                {
+                  title: 'برنامج التمهيدي',
+                  age: 'للأطفال من عمر 4-5 سنوات',
+                  image: 'https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&q=80'
+                }
+              ].map((program, index) => (
+                <motion.div 
+                  key={index}
+                  className="bg-white rounded-lg shadow-md overflow-hidden"
+                  variants={scaleIn}
+                  whileHover={{ y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <img 
+                    src={program.image} 
+                    alt={program.title}
+                    className="w-full h-48 object-cover"
+                  />
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold mb-2">{program.title}</h3>
+                    <p className="text-gray-600 mb-4">{program.age}</p>
+                    <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                      <Link to="/programs" className="btn-secondary w-full block text-center">
+                        المزيد من التفاصيل
+                      </Link>
+                    </motion.div>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Upcoming Events */}
-        <div className="py-16 bg-white">
+        <motion.div 
+          className="py-16 bg-white"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
+            <motion.div 
+              className="text-center mb-12"
+              variants={fadeInUp}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, margin: "-50px" }}
+            >
               <h2 className="text-3xl font-bold mb-4">الفعاليات القادمة</h2>
               <p className="text-xl text-gray-600">انضم إلينا في فعالياتنا المميزة</p>
-            </div>
+            </motion.div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8"
+              variants={staggerContainer}
+              initial="initial"
+              whileInView="animate"
+              viewport={{ once: true, margin: "-50px" }}
+            >
               {upcomingEvents.map((event) => (
-                <div key={event.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
+                <motion.div 
+                  key={event.id} 
+                  className="bg-white rounded-lg shadow-lg overflow-hidden"
+                  variants={fadeInUp}
+                  whileHover={{ y: -10 }}
+                >
                   <div className="grid md:grid-cols-2">
                     <img 
                       src={event.image} 
@@ -156,20 +298,28 @@ function Home() {
                           <span>{event.location}</span>
                         </div>
                       </div>
-                      <Link to="/events" className="btn-primary block text-center">سجل للحضور</Link>
+                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                        <Link to="/events" className="btn-primary block text-center">
+                          سجل للحضور
+                        </Link>
+                      </motion.div>
                     </div>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
             
             <div className="text-center">
-              <Link to="/events" className="btn-secondary inline-block">عرض جميع الفعاليات</Link>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Link to="/events" className="btn-secondary inline-block">
+                  عرض جميع الفعاليات
+                </Link>
+              </motion.div>
             </div>
           </div>
-        </div>
-      </div>
-    </>
+        </motion.div>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 

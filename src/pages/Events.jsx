@@ -1,8 +1,39 @@
 import React from 'react'
 import { Calendar, Clock, MapPin } from 'lucide-react'
+import { motion, AnimatePresence } from 'framer-motion'
 import SEO from '../components/SEO';
 
 const Events = () => {
+  const pageTransition = {
+    initial: { opacity: 0 },
+    animate: { 
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        when: "beforeChildren",
+        staggerChildren: 0.2
+      }
+    },
+    exit: { 
+      opacity: 0,
+      transition: {
+        duration: 0.3
+      }
+    }
+  }
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  }
+
   const events = [
     {
       id: 1,
@@ -34,55 +65,103 @@ const Events = () => {
   ]
 
   return (
-    <>
-      <SEO 
-        title="الفعاليات والأنشطة"
-        description="تعرف على فعاليات وأنشطة حضانة جمعية دير الغصون. برامج ترفيهية وتعليمية متنوعة على مدار العام."
-        keywords="فعاليات حضانة دير الغصون, أنشطة للأطفال في طولكرم, برامج ترفيهية, مهرجانات أطفال"
-        url="/events"
-      />
-      <div className="py-16">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h1 className="text-4xl font-bold mb-4">الفعاليات والأنشطة</h1>
-            <p className="text-xl text-gray-600">تعرف على أحدث فعالياتنا وأنشطتنا القادمة</p>
-          </div>
+    <AnimatePresence mode="wait">
+      <motion.div
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        variants={pageTransition}
+      >
+        <SEO 
+          title="الفعاليات والأنشطة"
+          description="تعرف على فعاليات وأنشطة حضانة جمعية دير الغصون. برامج ترفيهية وتعليمية متنوعة على مدار العام."
+          keywords="فعاليات حضانة دير الغصون, أنشطة للأطفال في طولكرم, برامج ترفيهية, مهرجانات أطفال"
+          url="/events"
+        />
+        <div className="py-16">
+          <div className="container mx-auto px-4">
+            <motion.div 
+              className="text-center mb-16"
+              variants={fadeInUp}
+            >
+              <h1 className="text-4xl font-bold mb-4">الفعاليات والأنشطة</h1>
+              <p className="text-xl text-gray-600">تعرف على أحدث فعالياتنا وأنشطتنا القادمة</p>
+            </motion.div>
 
-          <div className="grid grid-cols-1 gap-8">
-            {events.map((event) => (
-              <div key={event.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                <div className="grid md:grid-cols-2">
-                  <img 
-                    src={event.image} 
-                    alt={event.title}
-                    className="h-full w-full object-cover"
-                  />
-                  <div className="p-8">
-                    <h2 className="text-3xl font-bold mb-4">{event.title}</h2>
-                    <div className="space-y-4 mb-6">
-                      <div className="flex items-center space-x-3 space-x-reverse">
-                        <Calendar className="h-6 w-6 text-primary" />
-                        <span>{event.date}</span>
-                      </div>
-                      <div className="flex items-center space-x-3 space-x-reverse">
-                        <Clock className="h-6 w-6 text-primary" />
-                        <span>{event.time}</span>
-                      </div>
-                      <div className="flex items-center space-x-3 space-x-reverse">
-                        <MapPin className="h-6 w-6 text-primary" />
-                        <span>{event.location}</span>
-                      </div>
+            <motion.div 
+              className="grid grid-cols-1 gap-8"
+              variants={{
+                animate: {
+                  transition: {
+                    staggerChildren: 0.15
+                  }
+                }
+              }}
+            >
+              {events.map((event) => (
+                <motion.div 
+                  key={event.id} 
+                  className="bg-white rounded-lg shadow-lg overflow-hidden"
+                  variants={fadeInUp}
+                  whileHover={{ y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <div className="grid md:grid-cols-2">
+                    <motion.img 
+                      src={event.image} 
+                      alt={event.title}
+                      className="h-full w-full object-cover"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.6 }}
+                    />
+                    <div className="p-8">
+                      <motion.div
+                        initial={{ opacity: 0, x: 50 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.6 }}
+                      >
+                        <h2 className="text-3xl font-bold mb-4">{event.title}</h2>
+                        <div className="space-y-4 mb-6">
+                          <motion.div 
+                            className="flex items-center space-x-3 space-x-reverse"
+                            whileHover={{ x: 10 }}
+                          >
+                            <Calendar className="h-6 w-6 text-primary" />
+                            <span>{event.date}</span>
+                          </motion.div>
+                          <motion.div 
+                            className="flex items-center space-x-3 space-x-reverse"
+                            whileHover={{ x: 10 }}
+                          >
+                            <Clock className="h-6 w-6 text-primary" />
+                            <span>{event.time}</span>
+                          </motion.div>
+                          <motion.div 
+                            className="flex items-center space-x-3 space-x-reverse"
+                            whileHover={{ x: 10 }}
+                          >
+                            <MapPin className="h-6 w-6 text-primary" />
+                            <span>{event.location}</span>
+                          </motion.div>
+                        </div>
+                        <p className="text-gray-600 mb-6">{event.description}</p>
+                        <motion.button 
+                          className="btn-primary"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          سجل للحضور
+                        </motion.button>
+                      </motion.div>
                     </div>
-                    <p className="text-gray-600 mb-6">{event.description}</p>
-                    <button className="btn-primary">سجل للحضور</button>
                   </div>
-                </div>
-              </div>
-            ))}
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
-      </div>
-    </>
+      </motion.div>
+    </AnimatePresence>
   )
 }
 
