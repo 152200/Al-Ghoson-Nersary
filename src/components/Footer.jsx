@@ -1,5 +1,5 @@
 import React from 'react'
-// import { Phone, Mail, MapPin, Tree } from 'lucide-react'
+import { Phone, Mail, MapPin, TreePine } from 'lucide-react'
 
 function Footer() {
   return (
@@ -8,7 +8,7 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center space-x-2 space-x-reverse mb-4">
-              {/* <Tree className="h-8 w-8" /> */}
+              <TreePine className="h-8 w-8" />
               <span className="text-xl font-bold">روضة الأطفال السعيدة</span>
             </div>
             <p className="text-sm">نحن نؤمن بأن كل طفل يستحق أفضل بداية في رحلة التعلم</p>
@@ -18,15 +18,15 @@ function Footer() {
             <h3 className="text-lg font-semibold mb-4">تواصل معنا</h3>
             <div className="space-y-2">
               <div className="flex items-center space-x-2 space-x-reverse">
-                {/* <Phone className="h-5 w-5" /> */}
+                <Phone className="h-5 w-5" />
                 <span>+966 12 345 6789</span>
               </div>
               <div className="flex items-center space-x-2 space-x-reverse">
-                {/* <Mail className="h-5 w-5" /> */}
+                <Mail className="h-5 w-5" />
                 <span>info@happynursery.com</span>
               </div>
               <div className="flex items-center space-x-2 space-x-reverse">
-                {/* <MapPin className="h-5 w-5" /> */}
+                <MapPin className="h-5 w-5" />
                 <span>الرياض، المملكة العربية السعودية</span>
               </div>
             </div>
@@ -41,7 +41,7 @@ function Footer() {
             </ul>
           </div>
           
-          <div>
+          {/* <div>
             <h3 className="text-lg font-semibold mb-4">النشرة البريدية</h3>
             <p className="mb-4">اشترك للحصول على آخر الأخبار والتحديثات</p>
             <div className="flex">
@@ -54,7 +54,7 @@ function Footer() {
                 اشتراك
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       

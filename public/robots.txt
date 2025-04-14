@@ -1,0 +1,22 @@
+User-agent: *
+Allow: /
+Allow: /programs
+Allow: /events
+Allow: /gallery
+Allow: /contact
+
+# Prevent crawling of non-essential pages
+Disallow: /admin/
+Disallow: /api/
+Disallow: /temp/
+Disallow: /*?*
+
+# Sitemaps
+Sitemap: https://www.deiralghosonnursery.ps/sitemap.xml
+Sitemap: https://www.deiralghosonnursery.ps/news-sitemap.xml
+
+# Optimize crawling
+Crawl-delay: 10
+
+# Host directive
+Host: www.deiralghosonnursery.ps
