@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #5CB338;
+  --color-secondary: #ECE852;
+  --color-accent: #FFC145;
+  --color-danger: #FB4141;
+}
+
+body {
+  font-family: 'Noto Kufi Arabic', sans-serif;
+  direction: rtl;
+}
+
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-[#5CB338] text-white px-6 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-300;
+  }
+  
+  .btn-secondary {
+    @apply bg-[#ECE852] text-gray-800 px-6 py-2 rounded-lg hover:bg-opacity-90 transition-all duration-300;
+  }
+}
